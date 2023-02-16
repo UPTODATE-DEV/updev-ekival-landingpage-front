@@ -59,7 +59,7 @@ function Timeline() {
       <div className="border-l-2 sm:border-t-2 sm:border-l-0 h-full sm:h-auto  md:border-gray-300 absolute sm:top-4 left-5 sm:left-0 sm:right-0"></div>
       <div className="flex justify-center items-center flex-col sm:flex-row space-y-8 sm:space-y-0">
         {events.map((event, i) => (
-          <div key={event.id} className="flex items-start flex-col">
+          <div key={event.id} className="flex items-start flex-col w-full h-64">
             <svg
               className="fill-current text-gray-300 w-8 h-8 mb-2 ml-[-20px] sm:ml-0  rotate-90 sm:rotate-0"
               xmlns="http://www.w3.org/2000/svg"
