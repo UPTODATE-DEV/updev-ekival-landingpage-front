@@ -1,7 +1,24 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
 
-const HomePage = dynamic(import("../screens/Home"), { ssr: false, loading: () => <p>Loading...</p> });
+const HomePage = dynamic(import("../screens/Home"), {
+  ssr: false,
+  loading: () => (
+    <div className="fixed inset-0 bg-gradient-to-r from-purple-400 to-blue-500">
+      <div className="h-full w-full bg-white opacity-60"></div>
+      <div className="h-full w-full flex items-center justify-center">
+        <div className="grid grid-cols-3 gap-4">
+          <div className="w-20 h-20 rounded-full bg-white animate-pulse"></div>
+          <div className="w-20 h-20 rounded-full bg-white animate-pulse"></div>
+          <div className="w-20 h-20 rounded-full bg-white animate-pulse"></div>
+          <div className="w-20 h-20 rounded-full bg-white animate-pulse"></div>
+          <div className="w-20 h-20 rounded-full bg-white animate-pulse"></div>
+          <div className="w-20 h-20 rounded-full bg-white animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  ),
+});
 
 export default function Home() {
   return (
