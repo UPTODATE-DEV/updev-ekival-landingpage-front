@@ -3,7 +3,12 @@ module.exports = {
   darkMode: "class",
   content: ["./src/pages/**/*.{js,ts,jsx,tsx}", "./src/components/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    container: {
+      center: true,
+      screens: {
+        lg: "1280px",
+      },
+    },
   },
   plugins: [],
 };

@@ -4,11 +4,9 @@ import { useState } from "react";
 const DarkModeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme();
   const [isDark, setIsDark] = useState(resolvedTheme === "dark");
-  const [containerBgColor, setContainerBgColor] = useState(isDark ? "#1f2937" : "#f3f4f6");
 
   const handleToggle = () => {
     setIsDark(!isDark);
-    setContainerBgColor(isDark ? "#f3f4f6" : "#1f2937");
     setTheme(isDark ? "light" : "dark");
   };
 
@@ -27,7 +25,7 @@ const DarkModeToggle = () => {
         className="absolute w-6 h-6 bg-white rounded-full shadow flex justify-center items-center "
         style={sliderStyle}
       >
-        {isDark ? "🌞" : "🌙"}
+        {isDark ? "🌙" : "🌞"}
       </div>
     </button>
   );
