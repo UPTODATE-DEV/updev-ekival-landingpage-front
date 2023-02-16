@@ -107,8 +107,8 @@ function NavBar() {
               </div>
               <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <Image className="block h-8 w-auto lg:hidden" width={72} height={72} src="/logo.png" alt="Ekival" />
-                  <Image className="hidden h-8 w-auto lg:block" width={72} height={72} src="/logo.png" alt="Ekival" />
+                  <Image className="block h-8 w-auto lg:hidden" width={256} height={96} src="/logo.png" alt="Ekival" />
+                  <Image className="hidden h-8 w-auto lg:block" width={256} height={96} src="/logo.png" alt="Ekival" />
                 </div>
                 <div className="hidden md:ml-16 md:block">
                   <div className="flex space-x-4">

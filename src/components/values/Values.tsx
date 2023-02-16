@@ -65,6 +65,7 @@ const Values = () => {
                   href="https://test.ekival.com"
                   target="_blank"
                   rel="noreferrer"
+                  aria-label="Ekival Exchange"
                   className="text-base font-semibold text-indigo-600 dark:text-indigo-200 hover:text-indigo-800"
                 >
                   Try now →

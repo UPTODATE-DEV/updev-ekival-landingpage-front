@@ -40,6 +40,7 @@ const Convert = () => {
           <div className="mt-10 flex items-center  gap-x-6">
             <a
               href="#"
+              aria-label="Ekival Exchange"
               className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
             >
               Watch video
