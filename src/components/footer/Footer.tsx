@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0 max-w-sm">
               <Link href="/" target="_blank" className="flex items-center">
-                <Image width={256} height={96} src="/logo.png" className="mr-4 h-10" alt="FlowBite Logo" />
+                <Image width={256} height={96} src="/logo.png" className="mr-4 w-36 h-auto" alt="FlowBite Logo" />
               </Link>
               <p className="mt-6 text-lg leading-8  text-gray-300">
                 Libero fames augue nisl porttitor nisi, quis. Id ac elit odio vitae elementum enim vitae ullamcorper
