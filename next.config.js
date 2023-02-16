@@ -7,7 +7,7 @@ const nextConfig = {
     defaultLocale: "en",
   },
   images: {
-    domains: ["ekival.com"],
+    domains: ["ekival.com", "images.unsplash.com"],
     formats: ["image/avif", "image/webp"],
   },
 };

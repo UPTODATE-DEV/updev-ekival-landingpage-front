@@ -1,15 +1,40 @@
 const Values = () => {
+  const values = [
+    {
+      en: {
+        title: "Send/Receive Money",
+        description: "Carry out peer-to-peer money transfer in a matter of seconds.",
+      },
+    },
+    {
+      en: {
+        title: "Pay online/Get paid",
+        description: "Don’t mind the distance. Grow your business with online payments.",
+      },
+    },
+    {
+      en: {
+        title: "Make trades",
+        description: "Purchase, buy or sell products and services from anywhere.",
+      },
+    },
+    {
+      en: {
+        title: "Manage crypto",
+        description: "Take your crypto-currency experience to the next level.",
+      },
+    },
+  ];
+
   return (
-    <div className="container relative px-6 lg:px-8">
-      {/* Add to level title with two color */}
-      <h1 className="sm:text-xl md:text-4xl font-bold text-gray-900 dark:text-white w-full md:w-3/5 md:text-center mx-auto my-4 md:my-16">
+    <div className="container relative px-6 lg:px-8 py-10" id="services">
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white w-full md:w-3/5 md:text-center mx-auto my-4 md:my-16">
         Send Money and Crypto or provide liquidity <span className="text-indigo-600">to earn Yields</span>
       </h1>
 
-      {/* Add two cards with gap */}
       <div className="grid grid-cols-1 gap-4 md:gap-12 sm:grid-cols-2">
-        {[1, 2, 3, 4].map((item) => (
-          <div className="flex bg-white dark:bg-slate-800 rounded-lg shadow-lg p-4 items-start">
+        {values.map((item, i) => (
+          <div className="flex bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6 items-start">
             <div className="flex items-center">
               <div className="p-3 rounded-full bg-indigo-600 bg-opacity-75">
                 <svg className="h-8 w-8 text-white" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,22 +54,19 @@ const Values = () => {
               </div>
             </div>
             <div className="ml-6">
-              {/* Add gradient title */}
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-400">
-                  Send Money
+                  {item.en.title}
                 </span>
               </h2>
-              <div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa libero labore natus. Tenetur distinctio
-                necessitatibus pariatur voluptatibus.
-              </div>
+              <div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">{item.en.description}</div>
               <div className="mt-4">
                 <a
-                  href="#"
+                  href="https://test.ekival.com"
+                  target="_blank"
                   className="text-base font-semibold text-indigo-600 dark:text-indigo-200 hover:text-indigo-800"
                 >
-                  Read More →
+                  Try now →
                 </a>
               </div>
             </div>

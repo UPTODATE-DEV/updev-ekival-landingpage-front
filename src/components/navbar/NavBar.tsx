@@ -3,7 +3,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useI18n } from "../../hooks/useI18n";
 import DarkModeToggle from "../common/DarkModeToggle";
 
@@ -14,9 +14,9 @@ const navigation = [
     href: "/",
   },
   {
-    en: "About Us",
-    fr: "À propos",
-    href: "/#about-us",
+    en: "Services",
+    fr: "Services",
+    href: "/#services",
   },
   {
     en: "Features",
@@ -24,9 +24,9 @@ const navigation = [
     href: "/#features",
   },
   {
-    en: "Roadmap",
-    fr: "Feuille de route",
-    href: "/#roadmap",
+    en: "About Us",
+    fr: "À propos",
+    href: "/#about-us",
   },
   {
     en: "Team",
@@ -36,12 +36,7 @@ const navigation = [
   {
     en: "Exchanges",
     fr: "Échanges",
-    href: "/#exchanges",
-  },
-  {
-    en: "Contact",
-    fr: "Contact",
-    href: "/#contact",
+    href: "https://test.ekival.com",
   },
 ];
 
@@ -50,7 +45,8 @@ function classNames(...classes: string[]) {
 }
 
 function NavBar() {
-  const { locale, asPath } = useRouter();
+  const { locale, asPath, push } = useRouter();
+  const [scrolled, setScrolled] = useState(false);
 
   const switchLanguages = useI18n<"fr" | "en">();
 
@@ -66,15 +62,41 @@ function NavBar() {
     switchLanguages(locale === "fr" ? "en" : "fr");
   };
 
+  const handleGoToPath = (path: string) => {
+    push(path);
+  };
+
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 600) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <Disclosure as="nav" className="relative z-10">
+    <Disclosure
+      as="nav"
+      className={`z-10 ${
+        scrolled
+          ? "sticky top-0 bg-slate-100 border-b-2 border-gray-300 dark:border-b-gray-700 dark:bg-slate-800"
+          : "relative"
+      } `}
+    >
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-2 md:px-6 lg:px-8 ">
             <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+              <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-900 dark:text-white hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -83,12 +105,12 @@ function NavBar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Image className="block h-8 w-auto lg:hidden" width={72} height={72} src="/logo.png" alt="Ekival" />
                   <Image className="hidden h-8 w-auto lg:block" width={72} height={72} src="/logo.png" alt="Ekival" />
                 </div>
-                <div className="hidden sm:ml-16 sm:block">
+                <div className="hidden md:ml-16 md:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
                       <Link
@@ -114,7 +136,7 @@ function NavBar() {
                   <DarkModeToggle />
                 </div>
 
-                {/* Profile dropdown */}
+                {/* Langue dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -171,17 +193,17 @@ function NavBar() {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel className="md:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3">
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.href}
-                  as="a"
-                  href={item.href}
+                  as="button"
+                  onClick={() => handleGoToPath(item.href)}
                   className={classNames(
-                    asPath === item.href
+                    isCurrentPage(item)
                       ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      : "text-gray-900 dark:text-white hover:bg-gray-700 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium"
                   )}
                   aria-current={asPath === item.href ? "page" : undefined}

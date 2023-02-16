@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Banner = () => {
   return (
-    <div className="isolate ">
+    <div className="isolate">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
         <svg
           className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
@@ -30,32 +30,30 @@ const Banner = () => {
       </div>
       <main className="container">
         <div className="relative px-6 lg:px-8">
-          {/* two sections left and right with gap and use this text: Move money Get value Peer-2-Peer Crypto to Cash Transfers for hero banner */}
-          <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-16 py-16 lg:py-24">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-16 py-16 lg:py-24">
             <div className="flex-1">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl lg:text-6xl xl:text-6xl">
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 lg:text-6xl">
                 Move money <span className="inline text-blue-600 dark:text-blue-400">Get value</span> Peer-2-Peer Crypto{" "}
                 <span className="inline text-blue-600 dark:text-blue-400">Cash</span> to Cash Transfers
               </h1>
-              {/* Add this text: Ekival escrow smart contracts handle the secure exchange of money, goods and services */}
-
               <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
                 Ekival escrow smart contracts handle the secure exchange of money, goods and services
               </p>
               <div className="mt-10 flex items-center  gap-x-6">
                 <a
-                  href="#"
+                  href="https://test.ekival.com"
+                  target="_blank"
                   className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
                 >
-                  Get started
+                  Try now
                 </a>
                 <a href="#" className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
-                  Learn more <span aria-hidden="true">→</span>
+                  Watch video <span aria-hidden="true">→</span>
                 </a>
               </div>
             </div>
             <div className="flex-1">
-              <Image width={700} height={400} src="/hero.png" alt="banner" className="w-full h-auto" />
+              <Image width={700} height={400} priority src="/hero.png" alt="banner" className="w-full h-auto" />
             </div>
           </div>
           <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

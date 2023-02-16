@@ -5,6 +5,13 @@ import { useRouter } from "next/router";
 const NavBar = dynamic(import("../components/navbar/NavBar"));
 const Banner = dynamic(import("../components/banner/Banner"));
 const Values = dynamic(import("../components/values/Values"));
+const Convert = dynamic(import("../components/convert/Convert"));
+const Features = dynamic(import("../components/features/Features"));
+const Ekival = dynamic(import("../components/ekival/Ekival"));
+const Team = dynamic(import("../components/team/Team"));
+const Footer = dynamic(import("../components/footer/Footer"));
+const Timeline = dynamic(import("../components/timeline/Timeline"));
+const Partners = dynamic(import("../components/partners/Partners"));
 
 export default function Home() {
   const router = useRouter();
@@ -20,6 +27,13 @@ export default function Home() {
       <NavBar />
       <Banner />
       <Values />
+      <Convert />
+      <Features />
+      <Ekival />
+      <Timeline />
+      <Partners />
+      <Team />
+      <Footer />
     </>
   );
 }
