@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
 
 const NavBar = dynamic(import("../components/navbar/NavBar"), { ssr: false });
 const Banner = dynamic(import("../components/banner/Banner"), { ssr: false });
@@ -13,8 +12,6 @@ const Timeline = dynamic(import("../components/timeline/Timeline"), { ssr: false
 const Partners = dynamic(import("../components/partners/Partners"), { ssr: false });
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <>
       <NavBar />

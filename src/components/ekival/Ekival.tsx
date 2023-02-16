@@ -2,9 +2,9 @@ import Image from "next/image";
 
 const Convert = () => {
   return (
-    <div className="container relative px-6 lg:px-8 my-6" id="about-us">
+    <div className="container isolate relative px-6 lg:px-8 my-6" id="about-us">
       <svg
-        className="absolute top-0 left-1/2 -z-10 h-[42.375rem] -translate-x-1/2 blur-3xl xl:-top-6"
+        className="absolute hidden xl:block top-0 left-1/2 -z-10 h-[42.375rem] -translate-x-1/2 blur-3xl xl:-top-6"
         viewBox="0 0 1155 678"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
