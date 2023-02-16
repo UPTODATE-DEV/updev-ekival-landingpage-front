@@ -2,31 +2,30 @@ function Timeline() {
   const events = [
     {
       id: 1,
-      date: "Juin 2021",
-      title: "Progressively recaptiualize.",
-      description:
-        "Synergistically impact plug-and-play resources before fully tested process improvements. Proactively.",
+      date: "June 2022",
+      title: "Testnet & Beta",
+      description: "Currently testing on Testnet, implementing new functionalities (wallets, currencies)",
     },
     {
       id: 2,
-      date: "Juin 2021",
-      title: "Progressively recaptiualize.",
+      date: "August 2022",
+      title: "Fund 9 Proposal",
       description:
-        "Synergistically impact plug-and-play resources before fully tested process improvements. Proactively.",
+        "Ekival is bootstrapped. Smart contract implementation and stable coin availability would have delayed launch.",
     },
     {
       id: 3,
-      date: "Juin 2021",
-      title: "Progressively recaptiualize.",
+      date: "August 2022",
+      title: "Beta on Mainnet",
       description:
-        "Synergistically impact plug-and-play resources before fully tested process improvements. Proactively.",
+        "First paying users and financial modeling. Incentives to providers of liquidity to be calibrated, Supermarket network in Goma and Kinshasa,",
     },
     {
       id: 4,
-      date: "Juin 2021",
-      title: "Progressively recaptiualize.",
+      date: "December 2022",
+      title: "Mobile Apps & Liquidity API",
       description:
-        "Synergistically impact plug-and-play resources before fully tested process improvements. Proactively.",
+        "Most users in Africa would rely on mobile devices, Liquidity being offered through Ekival can be reserved through an API",
     },
   ];
 
