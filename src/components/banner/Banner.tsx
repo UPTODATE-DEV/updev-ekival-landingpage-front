@@ -43,11 +43,12 @@ const Banner = () => {
                 <a
                   href="https://test.ekival.com"
                   target="_blank"
+                  rel="noreferrer"
                   className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
                 >
                   Try now
                 </a>
-                <a href="#" className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
+                <a href="#" rel="noreferrer" className="text-base font-semibold leading-7 text-gray-900 dark:text-white">
                   Watch video <span aria-hidden="true">→</span>
                 </a>
               </div>

@@ -64,7 +64,7 @@ const Features = () => {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
         {values.map((item, i) => (
-          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6 items-start">
+          <div key={i} className="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6 items-start">
             <div className="flex items-center">
               <div className="p-3 rounded-full bg-indigo-600 bg-opacity-75">
                 <svg className="h-8 w-8 text-white" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">

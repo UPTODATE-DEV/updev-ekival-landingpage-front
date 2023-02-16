@@ -34,7 +34,7 @@ const Values = () => {
 
       <div className="grid grid-cols-1 gap-4 md:gap-12 sm:grid-cols-2">
         {values.map((item, i) => (
-          <div className="flex bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6 items-start">
+          <div key={i} className="flex bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6 items-start">
             <div className="flex items-center">
               <div className="p-3 rounded-full bg-indigo-600 bg-opacity-75">
                 <svg className="h-8 w-8 text-white" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,6 +64,7 @@ const Values = () => {
                 <a
                   href="https://test.ekival.com"
                   target="_blank"
+                  rel="noreferrer"
                   className="text-base font-semibold text-indigo-600 dark:text-indigo-200 hover:text-indigo-800"
                 >
                   Try now →
