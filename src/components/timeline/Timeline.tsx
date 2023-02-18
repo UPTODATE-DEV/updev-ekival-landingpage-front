@@ -58,7 +58,7 @@ function Timeline() {
       </div>
       <ol className="border-l border-gray-300">
         {events.map((event, i) => (
-          <li>
+          <li key={event.id}>
             <div className="flex flex-start items-center pt-3">
               <div className="bg-gray-300 w-2 h-2 rounded-full -ml-1 mr-3"></div>
               <p className="font-bold text-xl mb-2">{event.date}</p>
