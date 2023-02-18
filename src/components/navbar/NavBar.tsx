@@ -1,7 +1,6 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { useI18n } from "../../hooks/useI18n";
@@ -11,7 +10,7 @@ const navigation = [
   {
     en: "Home",
     fr: "Accueil",
-    href: "/",
+    href: "/#",
   },
   {
     en: "Services",
@@ -114,7 +113,7 @@ function NavBar() {
                 <div className="hidden md:ml-16 md:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <Link
+                      <a
                         key={item.href}
                         href={item.href}
                         className={classNames(
@@ -126,7 +125,7 @@ function NavBar() {
                         aria-current={isCurrentPage(item) ? "page" : undefined}
                       >
                         {getMenuName(item)}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>
