@@ -30,7 +30,7 @@ function Timeline() {
   ];
 
   return (
-    <div className="relative my-12 sm:my-44 md:my-52 container  px-6 lg:px-8" id="timeline">
+    <div className="relative my-4 md:my-6 container  px-6 lg:px-8" id="timeline">
       <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
         <svg
           className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
@@ -56,29 +56,20 @@ function Timeline() {
           </defs>
         </svg>
       </div>
-      <div className="border-l-2 sm:border-t-2 sm:border-l-0 h-full sm:h-auto  md:border-gray-300 absolute sm:top-4 left-5 sm:left-0 sm:right-0"></div>
-      <div className="flex justify-center items-center flex-col sm:flex-row space-y-8 sm:space-y-0">
+      <ol className="border-l border-gray-300">
         {events.map((event, i) => (
-          <div key={event.id} className="flex items-start flex-col w-full h-64">
-            <svg
-              className="fill-current text-gray-300 w-8 h-8 mb-2 ml-[-20px] sm:ml-0  rotate-90 sm:rotate-0"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path d="M19.5 10c0 5.5-4.5 10-10 10S-.5 15.5-.5 10 4 0 9.5 0 19.5 4.5 19.5 10zM9.8 14.7l4-4c.4-.4.4-1 0-1.4l-4-4c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4L11.6 10l-3.2 3.3c-.4.4-.4 1 0 1.4.2.1.3.1.7.1s.5 0 .7-.1z" />
-            </svg>
-            <div
-              className={`flex items-start flex-col ml-6 sm:ml-0 mt-[-40px] relative ${
-                i % 2 ? "sm:top-20" : "sm:top-[-220px]"
-              } `}
-            >
-              <div className="font-bold text-xl mb-2">{event.date}</div>
-              <div className="text-blue-600 text-xl font-medium mb-2">{event.title}</div>
-              <div className="text-gray-600 dark:text-slate-300 ">{event.description}</div>
+          <li>
+            <div className="flex flex-start items-center pt-3">
+              <div className="bg-gray-300 w-2 h-2 rounded-full -ml-1 mr-3"></div>
+              <p className="font-bold text-xl mb-2">{event.date}</p>
             </div>
-          </div>
+            <div className="mt-0.5 ml-4 mb-6">
+              <h4 className="text-blue-600 text-xl font-medium mb-2">{event.title}</h4>
+              <p className="text-gray-600 dark:text-slate-300 ">{event.description}</p>
+            </div>
+          </li>
         ))}
-      </div>
+      </ol>
     </div>
   );
 }

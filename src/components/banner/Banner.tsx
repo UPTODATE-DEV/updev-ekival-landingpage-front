@@ -1,8 +1,19 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useState } from "react";
+
+const Video = dynamic(import("../video/Video"), { ssr: false });
 
 const Banner = () => {
+  const [open, setOpen] = useState(false);
+
+  const toggleModal = () => {
+    setOpen((state) => !state);
+  };
+
   return (
     <div className="isolate">
+      <Video open={open} toggleModal={toggleModal} />
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
         <svg
           className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
@@ -53,6 +64,7 @@ const Banner = () => {
                   href="#"
                   aria-label="Ekival Exchange"
                   rel="noreferrer"
+                  onClick={toggleModal}
                   className="text-base font-semibold leading-7 text-gray-900 dark:text-white"
                 >
                   Watch video <span aria-hidden="true">→</span>

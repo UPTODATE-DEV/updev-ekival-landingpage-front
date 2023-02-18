@@ -90,14 +90,6 @@ const Features = () => {
                 </span>
               </h2>
               <div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">{item.en.description}</div>
-              <div className="mt-4">
-                <a
-                  href="#"
-                  className="text-base font-semibold text-indigo-600 dark:text-indigo-200 hover:text-indigo-800"
-                >
-                  Try now →
-                </a>
-              </div>
             </div>
           </div>
         ))}

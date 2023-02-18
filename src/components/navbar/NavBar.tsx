@@ -37,6 +37,7 @@ const navigation = [
     en: "Exchanges",
     fr: "Échanges",
     href: "https://test.ekival.com",
+    mobile: true,
   },
 ];
 
@@ -120,7 +121,7 @@ function NavBar() {
                           isCurrentPage(item)
                             ? "bg-gray-900 text-white dark:text-gray-900 dark:bg-gray-300"
                             : "dark:text-gray-300 hover:bg-gray-700 hover:text-white text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-900",
-                          "px-3 py-2 rounded-md text-sm font-medium"
+                          `px-3 py-2 rounded-md text-sm font-medium ${item?.mobile && "sm:hidden"} `
                         )}
                         aria-current={isCurrentPage(item) ? "page" : undefined}
                       >
@@ -189,6 +190,16 @@ function NavBar() {
                     </Menu.Items>
                   </Transition>
                 </Menu>
+
+                <a
+                  href="https://test.ekival.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Ekival Exchange"
+                  className="hidden md:inline-flex items-center ml-4 justify-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                >
+                  {locale === "fr" ? "Échange" : "Exchange"}
+                </a>
               </div>
             </div>
           </div>
