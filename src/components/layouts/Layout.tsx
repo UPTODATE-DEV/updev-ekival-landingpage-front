@@ -9,7 +9,7 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
 
   if (!mounted) return <></>;
 
-  return <main>{children}</main>;
+  return <main id="home">{children}</main>;
 };
 
 export default Layout;

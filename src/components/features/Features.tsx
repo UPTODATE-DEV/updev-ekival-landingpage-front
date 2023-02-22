@@ -1,35 +1,6 @@
-const Features = () => {
-  const values = [
-    {
-      en: {
-        title: " Cheap transfer fees",
-        description:
-          "1% is the set fee with maker (0.25%) and taker (0.75%) sharing the service fees. Additional fees apply for early cancellation or dispute handling.",
-      },
-    },
-    {
-      en: {
-        title: "Minimal to no spread",
-        description:
-          "The difference in exchange rates when converting currencies does not apply in most cases as we handle crypto tokens without external conversions.",
-      },
-    },
-    {
-      en: {
-        title: "Fast transactions",
-        description:
-          "Transactions settle fast on the Cardano network, i.e. within minutes and Ekival will implement other scaling solutions when they are available",
-      },
-    },
-    {
-      en: {
-        title: "Secured Escrow service through smart contracts",
-        description:
-          "Our smart contracts are publicly available and the on-chain information handling transfers can be viewed while confidential information involving users are not published",
-      },
-    },
-  ];
+import { addColorInText } from "../../lib/addColorInText";
 
+const Features = ({ data }: { data: Features }) => {
   return (
     <div className="relative px-6 lg:px-8 py-10" id="features">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -58,14 +29,15 @@ const Features = () => {
         </svg>
       </div>
 
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white w-full md:w-3/5 md:text-center mx-auto my-4 md:my-16">
-        These features that make <span className="text-indigo-600 block">Ekival the solution</span>
-      </h1>
+      <h1
+        className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white w-full md:w-1/3 md:text-center mx-auto my-4 md:my-16"
+        dangerouslySetInnerHTML={{ __html: addColorInText(data?.title, data.color) }}
+      ></h1>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-4">
-        {values.map((item, i) => (
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {data?.items.map((item, i) => (
           <div key={i} className="bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6 items-start">
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <div className="p-3 rounded-full bg-indigo-600 bg-opacity-75">
                 <svg className="h-8 w-8 text-white" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -86,10 +58,10 @@ const Features = () => {
             <div className="py-4">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-400">
-                  {item.en.title}
+                  {item.title}
                 </span>
               </h2>
-              <div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">{item.en.description}</div>
+              <div className="mt-2 text-gray-600 dark:text-gray-400 text-sm">{item.description}</div>
             </div>
           </div>
         ))}

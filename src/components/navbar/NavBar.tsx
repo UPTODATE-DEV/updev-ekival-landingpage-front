@@ -1,61 +1,38 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import { useI18n } from "../../hooks/useI18n";
+import { getImage, getImagePlaceholder } from "../../lib/getImage";
 import DarkModeToggle from "../common/DarkModeToggle";
-
-const navigation = [
-  {
-    en: "Home",
-    fr: "Accueil",
-    href: "/#",
-  },
-  {
-    en: "Services",
-    fr: "Services",
-    href: "/#services",
-  },
-  {
-    en: "Features",
-    fr: "Fonctionnalités",
-    href: "/#features",
-  },
-  {
-    en: "About Us",
-    fr: "À propos",
-    href: "/#about-us",
-  },
-  {
-    en: "Team",
-    fr: "Équipe",
-    href: "/#team",
-  },
-  {
-    en: "Exchanges",
-    fr: "Échanges",
-    href: "https://test.ekival.com",
-    mobile: true,
-  },
-];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-function NavBar() {
+function NavBar({ data, company }: { data: Navigation; company: Company }) {
   const { locale, asPath, push } = useRouter();
   const [scrolled, setScrolled] = useState(false);
 
-  const switchLanguages = useI18n<"fr" | "en">();
+  const { resolvedTheme } = useTheme();
 
-  const getMenuName = (item: { en: string; fr: string }) => {
-    return locale === "fr" ? item.fr : item.en;
+  const getLogoMode = () => {
+    const logo = resolvedTheme === "dark" ? company?.logoDark : company?.logoLight;
+    return {
+      url: getImage(logo),
+      placeholder: getImagePlaceholder(logo),
+    };
   };
 
-  const isCurrentPage = (item: { href: string }) => {
-    return asPath === item.href;
+  const logoUrl = getLogoMode().url;
+  const logoPlaceholder = getLogoMode().placeholder;
+
+  const switchLanguages = useI18n<"fr" | "en">();
+
+  const isCurrentPage = (item: CallToAction) => {
+    return asPath === item.path;
   };
 
   const toggleLang = () => {
@@ -107,24 +84,42 @@ function NavBar() {
               </div>
               <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <Image className="block h-8 w-auto lg:hidden" width={256} height={96} src="/logo.png" alt="Ekival" />
-                  <Image className="hidden h-8 w-auto lg:block" width={256} height={96} src="/logo.png" alt="Ekival" />
+                  <Image
+                    className="block h-8 w-auto lg:hidden"
+                    width={256}
+                    height={96}
+                    src={logoUrl}
+                    placeholder="blur"
+                    blurDataURL={logoPlaceholder}
+                    alt="Ekival logo"
+                  />
+                  <Image
+                    className="hidden h-8 w-auto lg:block"
+                    width={256}
+                    height={96}
+                    src={logoUrl}
+                    placeholder="blur"
+                    blurDataURL={logoPlaceholder}
+                    alt="Ekival logo"
+                  />
                 </div>
                 <div className="hidden md:ml-16 md:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {data?.items?.map((item) => (
                       <a
-                        key={item.href}
-                        href={item.href}
+                        key={item.path}
+                        href={locale === "en" ? item.path : `/fr${item.path}`}
+                        target={item.target}
+                        rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
                         className={classNames(
                           isCurrentPage(item)
                             ? "bg-gray-900 text-white dark:text-gray-900 dark:bg-gray-300"
                             : "dark:text-gray-300 hover:bg-gray-700 hover:text-white text-gray-900 dark:hover:bg-gray-700 dark:hover:text-gray-900",
-                          `px-3 py-2 rounded-md text-sm font-medium ${item?.mobile && "sm:hidden"} `
+                          `px-3 py-2 rounded-md text-sm font-medium ${item.target === "_blank" && "sm:hidden"} `
                         )}
                         aria-current={isCurrentPage(item) ? "page" : undefined}
                       >
-                        {getMenuName(item)}
+                        {item.name}
                       </a>
                     ))}
                   </div>
@@ -190,35 +185,37 @@ function NavBar() {
                   </Transition>
                 </Menu>
 
-                <a
-                  href="https://test.ekival.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Ekival Exchange"
-                  className="hidden md:inline-flex items-center ml-4 justify-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-                >
-                  {locale === "fr" ? "Échange" : "Exchange"}
-                </a>
+                {data?.items[data.items.length - 1] && (
+                  <a
+                    href={data?.items[data.items.length - 1].path}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Ekival Exchange"
+                    className="hidden md:inline-flex items-center ml-4 justify-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                  >
+                    {data?.items[data.items.length - 1].name}
+                  </a>
+                )}
               </div>
             </div>
           </div>
 
           <Disclosure.Panel className="md:hidden">
             <div className="space-y-1 px-2 pt-2 pb-3">
-              {navigation.map((item) => (
+              {data?.items?.map((item) => (
                 <Disclosure.Button
-                  key={item.href}
+                  key={item.id}
                   as="button"
-                  onClick={() => handleGoToPath(item.href)}
+                  onClick={() => handleGoToPath(item.path)}
                   className={classNames(
                     isCurrentPage(item)
                       ? "bg-gray-900 text-white"
                       : "text-gray-900 dark:text-white hover:bg-gray-700 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium"
                   )}
-                  aria-current={asPath === item.href ? "page" : undefined}
+                  aria-current={asPath === item.path ? "page" : undefined}
                 >
-                  {getMenuName(item)}
+                  {item.name}
                 </Disclosure.Button>
               ))}
             </div>

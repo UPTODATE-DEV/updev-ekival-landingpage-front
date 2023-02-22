@@ -1,39 +1,8 @@
 import Image from "next/image";
+import { addColorInText } from "../../lib/addColorInText";
+import { getImage } from "../../lib/getImage";
 
-const people = [
-  {
-    name: "Frederique Samvura",
-    role: "Frederique Samvura",
-    imageUrl: "/nft.png",
-  },
-  {
-    name: "Mohamad Ali Modiri",
-    role: "Developer",
-    imageUrl: "/nft.png",
-  },
-  {
-    name: "Dan Baruka",
-    role: "Back-end Integration",
-    imageUrl: "/nft.png",
-  },
-  {
-    name: "Didier Baganda",
-    role: "Financial Models",
-    imageUrl: "/nft.png",
-  },
-  {
-    name: "Piotr",
-    role: "Mobile Framework",
-    imageUrl: "/nft.png",
-  },
-  {
-    name: "Gimbalabs",
-    role: "Auditings based on bounty",
-    imageUrl: "/nft.png",
-  },
-];
-
-export default function Team() {
+export default function Team({ data }: { data: Team }) {
   return (
     <div className="py-24 relative isolate" id="team">
       <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
@@ -63,23 +32,23 @@ export default function Team() {
       </div>
       <div className="mx-auto grid max-w-7xl gap-y-20 gap-x-6 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-2xl">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            We start with a professional <span className="text-indigo-600">team member</span>
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-slate-300">
-            Libero fames augue nisl porttitor nisi, quis. Id ac elit odio vitae elementum enim vitae ullamcorper
-            suspendisse.
-          </p>
+          <h2
+            className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+            dangerouslySetInnerHTML={{ __html: addColorInText(data?.title, data.color) }}
+          ></h2>
+          <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-slate-300">{data?.description}</p>
         </div>
         <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
-          {people.map((person) => (
+          {data.items.map((person) => (
             <li key={person.name}>
               <div className="flex relative items-center gap-x-6">
                 <Image
                   width={128}
                   height={128}
                   className="h-16 w-16 rounded-full"
-                  src="/PFP-NFTS.webp"
+                  src={getImage(person.media)}
+                  placeholder="blur"
+                  blurDataURL={getImage(person.media)}
                   alt={person.name}
                 />
                 <div>

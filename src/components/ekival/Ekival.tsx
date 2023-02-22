@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { addColorInText } from "../../lib/addColorInText";
+import { getImage, getImagePlaceholder } from "../../lib/getImage";
 
-const Convert = () => {
+const Convert = ({ data }: { data: WhyChooseUs }) => {
   return (
     <div className="container isolate relative px-6 lg:px-8 my-6" id="about-us">
       <svg
@@ -30,25 +32,36 @@ const Convert = () => {
       </svg>
       <div className="flex flex-col lg:flex-row items-center justify-between gap-16 py-16 lg:py-24">
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
-            Ekival and <span className="inline text-blue-600 dark:text-blue-400">Cardano</span>
-          </h1>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-            Cardano is the blockchain platform powering Ekival, the largest one to use proof-of-stake protocol, With
-            Cardano, it’s safe and simple to make peer-to-peer transactions using its crypto-currency, ADA
-          </p>
+          <h1
+            className="text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl"
+            dangerouslySetInnerHTML={{ __html: addColorInText(data.title, data.color) }}
+          ></h1>
+          <p
+            className="mt-4 text-lg text-gray-600 dark:text-gray-400"
+            dangerouslySetInnerHTML={{ __html: data.description }}
+          ></p>
           <div className="mt-10 flex items-center  gap-x-6">
             <a
-              href="#"
+              href={data.button.path}
               aria-label="Ekival Exchange"
+              target={data.button.target}
+              rel={data.button.target === "_blank" ? "noopener noreferrer" : ""}
               className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
             >
-              Watch video
+              {data.button.label}
             </a>
           </div>
         </div>
         <div className="flex-1">
-          <Image width={700} height={400} src="/img2.png" alt="banner" className="w-full h-auto" />
+          <Image
+            width={700}
+            height={400}
+            src={getImage(data.media)}
+            placeholder="blur"
+            blurDataURL={getImagePlaceholder(data.media)}
+            alt="banner"
+            className="w-full h-auto"
+          />
         </div>
       </div>
     </div>

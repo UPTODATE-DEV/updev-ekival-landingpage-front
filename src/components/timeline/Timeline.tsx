@@ -1,34 +1,4 @@
-function Timeline() {
-  const events = [
-    {
-      id: 1,
-      date: "June 2022",
-      title: "Testnet & Beta",
-      description: "Currently testing on Testnet, implementing new functionalities (wallets, currencies)",
-    },
-    {
-      id: 2,
-      date: "August 2022",
-      title: "Fund 9 Proposal",
-      description:
-        "Ekival is bootstrapped. Smart contract implementation and stable coin availability would have delayed launch.",
-    },
-    {
-      id: 3,
-      date: "August 2022",
-      title: "Beta on Mainnet",
-      description:
-        "First paying users and financial modeling. Incentives to providers of liquidity to be calibrated, Supermarket network in Goma and Kinshasa,",
-    },
-    {
-      id: 4,
-      date: "December 2022",
-      title: "Mobile Apps & Liquidity API",
-      description:
-        "Most users in Africa would rely on mobile devices, Liquidity being offered through Ekival can be reserved through an API",
-    },
-  ];
-
+function Timeline({ data }: { data: Timeline[] }) {
   return (
     <div className="relative my-4 md:my-6 container  px-6 lg:px-8" id="timeline">
       <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
@@ -57,14 +27,15 @@ function Timeline() {
         </svg>
       </div>
       <ol className="border-l border-gray-300">
-        {events.map((event, i) => (
+        {data.map((event, i) => (
           <li key={event.id}>
             <div className="flex flex-start items-center pt-3">
               <div className="bg-gray-300 w-2 h-2 rounded-full -ml-1 mr-3"></div>
-              <p className="font-bold text-xl mb-2">{event.date}</p>
+              <p className="font-bold text-lg mb-2">{event.date}</p>
             </div>
             <div className="mt-0.5 ml-4 mb-6">
-              <h4 className="text-blue-600 text-xl font-medium mb-2">{event.title}</h4>
+              <h4 className="text-blue-600 text-2xl font-medium">{event.title}</h4>
+              {event.subTitle && <p className="text-dark text-lg font-medium dark:text-white mb-2">{event.subTitle}</p>}
               <p className="text-gray-600 dark:text-slate-300 ">{event.description}</p>
             </div>
           </li>

@@ -1,10 +1,12 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
+import { addColorInText } from "../../lib/addColorInText";
+import { getImage, getImagePlaceholder } from "../../lib/getImage";
 
 const Video = dynamic(import("../video/Video"), { ssr: false });
 
-const Banner = () => {
+const Banner = ({ data }: { data: Banner }) => {
   const [open, setOpen] = useState(false);
 
   const toggleModal = () => {
@@ -43,22 +45,20 @@ const Banner = () => {
         <div className="relative px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-16 py-16 lg:py-24">
             <div className="flex-1">
-              <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 lg:text-6xl">
-                Move money <span className="inline text-blue-600 dark:text-blue-400">Get value</span> Peer-2-Peer Crypto{" "}
-                <span className="inline text-blue-600 dark:text-blue-400">Cash</span> to Cash Transfers
-              </h1>
-              <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-                Ekival escrow smart contracts handle the secure exchange of money, goods and services
-              </p>
+              <h1
+                className="text-4xl font-bold text-gray-900 dark:text-gray-100 lg:text-6xl"
+                dangerouslySetInnerHTML={{ __html: addColorInText(data.title, data.color) }}
+              ></h1>
+              <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">{data.description}</p>
               <div className="mt-10 flex items-center  gap-x-6">
                 <a
-                  href="https://test.ekival.com"
+                  href={data.button.path}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Ekival Exchange"
                   className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
                 >
-                  Try now
+                  {data.button.label}
                 </a>
                 <a
                   href="#"
@@ -67,12 +67,21 @@ const Banner = () => {
                   onClick={toggleModal}
                   className="text-base font-semibold leading-7 text-gray-900 dark:text-white"
                 >
-                  Watch video <span aria-hidden="true">→</span>
+                  {data.video.label} <span aria-hidden="true">→</span>
                 </a>
               </div>
             </div>
             <div className="flex-1">
-              <Image width={700} height={400} priority src="/hero.png" alt="banner" className="w-full h-auto" />
+              <Image
+                width={700}
+                height={400}
+                priority
+                src={getImage(data.media)}
+                placeholder="blur"
+                blurDataURL={getImagePlaceholder(data.media)}
+                alt="banner"
+                className="w-full h-auto"
+              />
             </div>
           </div>
           <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
